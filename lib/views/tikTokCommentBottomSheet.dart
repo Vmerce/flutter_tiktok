@@ -30,7 +30,7 @@ class TikTokCommentBottomSheet extends StatelessWidget {
             alignment: Alignment.center,
             // color: Colors.white.withOpacity(0.2),
             child: Text(
-              '128条评论',
+              '128 comments',
               style: StandardTextStyle.small,
             ),
           ),
@@ -70,12 +70,12 @@ class _CommentRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          '是假用户哟',
+          'Fake user',
           style: StandardTextStyle.smallWithOpacity,
         ),
         Container(height: 2),
         Text(
-          '这是一条模拟评论，主播666啊。',
+          'This is a mock comment, anchor 666.',
           style: StandardTextStyle.normal,
         ),
       ],

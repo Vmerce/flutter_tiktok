@@ -17,7 +17,7 @@ import 'package:video_player/video_player.dart';
 
 import 'msgPage.dart';
 
-/// 单独修改了bottomSheet组件的高度
+/// Modified the height of the bottomSheet component separately
 import 'package:flutter_tiktok/other/bottomSheet.dart' as CustomBottomSheet;
 
 class HomePage extends StatefulWidget {
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   TikTokVideoListController _videoListController = TikTokVideoListController();
 
-  /// 记录点赞
+  /// record likes
   Map<int, bool> favoriteMap = {};
 
   List<UserVideo> videoDataList = [];
@@ -181,11 +181,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             scrollDirection: Axis.vertical,
             itemCount: _videoListController.videoCount,
             itemBuilder: (context, i) {
-              // 拼一个视频组件出来
+              // Make a video component
               bool isF = SafeMap(favoriteMap)[i].boolean;
               var player = _videoListController.playerOfIndex(i)!;
               var data = player.videoInfo!;
-              // 右侧按钮列
+              // right button column
               Widget buttons = TikTokButtonColumn(
                 isFavorite: isF,
                 onAvatar: () {
@@ -216,7 +216,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               );
 
               currentVideo = TikTokVideoPage(
-                // 手势播放与自然播放都会产生暂停按钮状态变化，待处理
+                // Gesture play and natural play will produce pause button state changes, to be processed
                 hidePauseIcon: !player.showPauseIcon.value,
                 aspectRatio: 9 / 16.0,
                 key: Key(data.url + '$i'),

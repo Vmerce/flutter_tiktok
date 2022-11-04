@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:safemap/safemap.dart';
 import 'package:tapped/tapped.dart';
 
-/// 单独修改了bottomSheet组件的高度
+/// Modified the height of the bottomSheet component separately
 import 'package:flutter_tiktok/other/bottomSheet.dart' as CustomBottomSheet;
 
 class FollowPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _FollowPageState extends State<FollowPage> {
   Widget build(BuildContext context) {
     Widget head = TikTokSwitchAppbar(
       index: select,
-      list: ['推荐', '关注'],
+      list: ['Recommend', 'Follow'],
       onSwitch: (i) => setState(() => select = i),
     );
     Widget body = ListView.builder(
@@ -118,7 +118,7 @@ class FollowRow extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 8),
           child: Text(
-            '朱二蛋的枯燥生活',
+            'The boring life of Zhu Erdan',
             style: StandardTextStyle.normalW,
           ),
         )
@@ -127,7 +127,7 @@ class FollowRow extends StatelessWidget {
     Widget content = Padding(
       padding: const EdgeInsets.fromLTRB(2, 6, 50, 8),
       child: Text(
-        '#原创 有钱人的生活就是这么朴实无华，且枯燥 #短视频',
+        '#Original The life of the rich is so unpretentious and boring #short video',
         style: StandardTextStyle.normal,
       ),
     );
@@ -140,18 +140,18 @@ class FollowRow extends StatelessWidget {
         Expanded(child: Container()),
         _RowButton(
           iconData: Icons.share,
-          title: '分享',
+          title: 'Share',
         ),
         _RowButton(
           iconData: Icons.mode_comment,
           size: SysSize.iconNormal - 2,
-          title: '评论',
+          title: 'Comment',
           onTap: onComment,
         ),
         _RowButton(
           color: isFavorite! ? ColorPlate.red : null,
           iconData: Icons.favorite,
-          title: '赞',
+          title: 'Like',
           onTap: onFavorite,
         ),
       ],

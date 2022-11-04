@@ -1,7 +1,6 @@
 import 'package:flutter_tiktok/style/style.dart';
 import 'package:flutter/material.dart';
 
-
 class AdMucisText extends StatelessWidget {
   final String? text;
   final TextStyle? style;
@@ -83,7 +82,7 @@ class AdMucisText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // NOTE: 用于修正字体偏移无法对齐,注意：如判断字体为中文等，需禁用偏移
+      // NOTE: Used to correct the font offset that cannot be aligned. Note: If the font is judged to be Chinese, etc., the offset needs to be disabled
       padding: EdgeInsets.only(top: offset),
       child: DefaultTextStyle(
         style: defaultStyle!,

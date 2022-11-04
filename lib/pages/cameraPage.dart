@@ -15,23 +15,23 @@ class _CameraPageState extends State<CameraPage> {
       children: <Widget>[
         _CameraIconButton(
           icon: Icons.repeat,
-          title: '翻转',
+          title: 'Flip',
         ),
         _CameraIconButton(
           icon: Icons.tonality,
-          title: '速度',
+          title: 'Speed',
         ),
         _CameraIconButton(
           icon: Icons.texture,
-          title: '滤镜',
+          title: 'Filter',
         ),
         _CameraIconButton(
           icon: Icons.sentiment_satisfied,
-          title: '美化',
+          title: 'Beautify',
         ),
         _CameraIconButton(
           icon: Icons.timer,
-          title: '计时关',
+          title: 'Time off',
         ),
       ],
     );
@@ -65,7 +65,7 @@ class _CameraPageState extends State<CameraPage> {
               Icons.music_note,
             ),
             Text(
-              '选择音乐',
+              'Choose music',
               style: StandardTextStyle.normal,
             ),
             Container(width: 32, height: 12),
@@ -95,7 +95,7 @@ class _CameraPageState extends State<CameraPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _SidePhotoButton(title: '道具'),
+            _SidePhotoButton(title: 'Tools'),
             Expanded(
               child: Center(
                 child: Container(
@@ -113,7 +113,7 @@ class _CameraPageState extends State<CameraPage> {
                 ),
               ),
             ),
-            _SidePhotoButton(title: '上传'),
+            _SidePhotoButton(title: 'Upload'),
           ],
         ),
       ),

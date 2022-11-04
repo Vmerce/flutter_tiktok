@@ -16,7 +16,7 @@ class _MsgPageState extends State<MsgPage> {
   Widget build(BuildContext context) {
     Widget head = TikTokSwitchAppbar(
       index: select,
-      list: ['消息'],
+      list: ['information'],
       onSwitch: (i) => setState(() => select = i),
     );
     Widget topButtons = Container(
@@ -26,7 +26,7 @@ class _MsgPageState extends State<MsgPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _TopIconTextButton(
-            title: '粉丝',
+            title: 'Fans',
             icon: Icons.person,
             color: Colors.indigo,
             color2: Colors.green,
@@ -34,16 +34,16 @@ class _MsgPageState extends State<MsgPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (cxt) => MsgDetailListPage(
-                    title: '粉丝',
-                    msgTitle: '你的粉丝',
-                    msgDesc: '我是你的粉丝',
+                    title: 'Fans',
+                    msgTitle: 'You fans',
+                    msgDesc: 'I\'m your fan',
                   ),
                 ),
               );
             },
           ),
           _TopIconTextButton(
-            title: '赞',
+            title: 'Likes',
             icon: Icons.golf_course,
             color: Colors.teal,
             color2: Colors.blue,
@@ -51,9 +51,9 @@ class _MsgPageState extends State<MsgPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (cxt) => MsgDetailListPage(
-                    title: '赞',
-                    msgTitle: '你的粉丝',
-                    msgDesc: '给你点了个赞',
+                    title: 'Likes',
+                    msgTitle: 'Your Likes',
+                    msgDesc: 'Liked you',
                   ),
                 ),
               );
@@ -69,8 +69,8 @@ class _MsgPageState extends State<MsgPage> {
                 MaterialPageRoute(
                   builder: (cxt) => MsgDetailListPage(
                     title: '@',
-                    msgTitle: '你的粉丝',
-                    msgDesc: 'Ta提到了你',
+                    msgTitle: 'Mentiones',
+                    msgDesc: 'John mentioned you',
                     reverse: true,
                   ),
                 ),
@@ -78,7 +78,7 @@ class _MsgPageState extends State<MsgPage> {
             },
           ),
           _TopIconTextButton(
-            title: '评论',
+            title: 'Comments',
             icon: Icons.mode_comment,
             color: Colors.red,
             color2: Colors.amber,
@@ -86,9 +86,9 @@ class _MsgPageState extends State<MsgPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (cxt) => MsgDetailListPage(
-                    title: '评论',
-                    msgTitle: '老铁双击666啊',
-                    msgDesc: '你的粉丝',
+                    title: 'Comment',
+                    msgTitle: 'Old iron double-click 666',
+                    msgDesc: 'Your followers',
                     reverse: true,
                   ),
                 ),
@@ -110,7 +110,7 @@ class _MsgPageState extends State<MsgPage> {
           ),
           alignment: Alignment.center,
           child: Text(
-            '预留轮播图',
+            'Reserved carousel',
             style: TextStyle(
               color: Colors.white.withOpacity(0.1),
               fontSize: 18,
@@ -132,7 +132,7 @@ class _MsgPageState extends State<MsgPage> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              '系统',
+              'System',
               style: StandardTextStyle.smallWithOpacity,
             ),
           ),
@@ -146,8 +146,8 @@ class _MsgPageState extends State<MsgPage> {
                 ),
               ),
             ),
-            title: '商务洽谈',
-            desc: '您收到了3个商务洽谈申请',
+            title: 'Conversations',
+            desc: 'You have received 3 conversations',
           ),
           UserMsgRow(
             lead: ClipOval(
@@ -159,8 +159,8 @@ class _MsgPageState extends State<MsgPage> {
                 ),
               ),
             ),
-            title: '系统',
-            desc: '12条未读的系统消息',
+            title: 'System',
+            desc: '12 unread system messages',
           ),
           UserMsgRow(
             lead: ClipOval(
@@ -172,13 +172,13 @@ class _MsgPageState extends State<MsgPage> {
                 ),
               ),
             ),
-            title: '通知',
-            desc: '98条未读通知',
+            title: 'Notification',
+            desc: '98 unread notifications',
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              '私信',
+              'Private messages',
               style: StandardTextStyle.smallWithOpacity,
             ),
           ),

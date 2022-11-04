@@ -1,4 +1,3 @@
-
 import 'package:flutter_tiktok/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:tapped/tapped.dart';
@@ -50,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
                       Container(
                         padding: EdgeInsets.only(left: 2, bottom: 2),
                         child: Text(
-                          '搜索内容',
+                          'Search content',
                           style: StandardTextStyle.normal,
                         ),
                       )
@@ -61,7 +60,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Tapped(
               child: Text(
-                '取消',
+                'Cancel',
                 style: StandardTextStyle.normal.apply(color: ColorPlate.orange),
               ),
               onTap: widget.onPop,
@@ -82,7 +81,7 @@ class _SearchPageState extends State<SearchPage> {
           opacity: 0.6,
           child: Container(
             height: 46,
-            child: Center(child: Text('全部搜索记录')),
+            child: Center(child: Text('All search records')),
           ),
         ),
         Container(
@@ -97,7 +96,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
               alignment: Alignment.center,
               child: Text(
-                '预留轮播图',
+                'Reserved carousel',
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.1),
                   fontSize: 18,
@@ -144,7 +143,7 @@ class _SearchSelectRow extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(left: 8, bottom: 1),
               child: Text(
-                '搜索热点',
+                'Search hotspots',
                 style: StandardTextStyle.normal,
               ),
             ),

@@ -137,7 +137,7 @@ class TikTokAvatar extends StatelessWidget {
   }
 }
 
-/// 把IconData转换为文字，使其可以使用文字样式
+/// Convert IconData to text so that it can use text styles
 class IconToText extends StatelessWidget {
   final IconData? icon;
   final TextStyle? style;

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 ///
-/// TikTok风格的一个视频页组件，覆盖在video上，提供以下功能：
-/// 播放按钮的遮罩
-/// 单击事件
-/// 点赞事件回调（每次）
-/// 长宽比控制
-/// 底部padding（用于适配有沉浸式底部状态栏时）
+/// A TikTok-style video page component that overlays the video and provides the following functions:
+/// The mask of the play button
+/// Click event
+/// Like event callback (every time)
+/// Aspect ratio control
+/// Bottom padding (used when there is an immersive bottom status bar)
 ///
 class TikTokVideoPage extends StatelessWidget {
   final Widget? video;
@@ -39,16 +39,16 @@ class TikTokVideoPage extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // 右边的按钮列表
+    // list of buttons on the right
     Widget rightButtons = rightButtonColumn ?? Container();
-    // 用户信息
+    // User Info
     Widget userInfo = userInfoWidget ??
         VideoUserInfo(
           bottomPadding: bottomPadding,
         );
-    // 视频加载的动画
+    // animation for video loading
     // Widget videoLoading = VideoLoadingPlaceHolder(tag: tag);
-    // 视频播放页
+    // video playback page
     Widget videoContainer = Stack(
       children: <Widget>[
         Container(
@@ -174,12 +174,13 @@ class VideoUserInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '@朱二旦的枯燥生活',
+            '@Zhu Erdan\'s boring life',
             style: StandardTextStyle.big,
           ),
           Container(height: 6),
           Text(
-            desc ?? '#原创 有钱人的生活就是这么朴实无华，且枯燥 #短视频',
+            desc ??
+                '#Original rich people\'s life is so unpretentious and boring #shortvideo',
             style: StandardTextStyle.normal,
           ),
           Container(height: 6),
@@ -188,7 +189,7 @@ class VideoUserInfo extends StatelessWidget {
               Icon(Icons.music_note, size: 14),
               Expanded(
                 child: Text(
-                  '朱二旦的枯燥生活创作的原声',
+                  'The original sound of Zhu Erdan\'s boring life',
                   maxLines: 9,
                   style: StandardTextStyle.normal,
                 ),

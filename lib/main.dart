@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  /// 自定义报错页面
+  /// custom error page
   if (kReleaseMode) {
     ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
       debugPrint(flutterErrorDetails.toString());
       return Material(
         child: Center(
             child: Text(
-          "发生了没有处理的错误\n请通知开发者",
+          "An unhandled error occurred\nPlease notify the developer",
           textAlign: TextAlign.center,
         )),
       );
@@ -29,12 +29,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         hintColor: Colors.white,
-        accentColor: Colors.white,
+        primaryColorLight: Colors.white,
         primaryColor: ColorPlate.orange,
-        primaryColorBrightness: Brightness.dark,
         scaffoldBackgroundColor: ColorPlate.back1,
         dialogBackgroundColor: ColorPlate.back2,
-        accentColorBrightness: Brightness.light,
         textTheme: TextTheme(
           bodyText1: StandardTextStyle.normal,
         ),

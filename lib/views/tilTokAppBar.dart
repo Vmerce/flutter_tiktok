@@ -67,7 +67,7 @@ class TikTokAppbar extends StatelessWidget {
             IosBackButton(),
             Expanded(
               child: Text(
-                title ?? '未定标题',
+                title ?? 'Undetermined title',
                 textAlign: TextAlign.center,
                 style: StandardTextStyle.big,
               ),

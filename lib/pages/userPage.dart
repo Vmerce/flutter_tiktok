@@ -33,7 +33,7 @@ class _UserPageState extends State<UserPage> {
         children: <Widget>[
           Tapped(
             child: _UserRightButton(
-              title: widget.isSelfPage ? '钱包' : '关注',
+              title: widget.isSelfPage ? 'Wallet' : 'Follow',
             ),
           ),
         ],
@@ -74,7 +74,7 @@ class _UserPageState extends State<UserPage> {
       ),
       children: <Widget>[
         Container(height: 20),
-        // 头像与关注
+        // avatar and follow
         Stack(
           alignment: Alignment.bottomLeft,
           children: <Widget>[likeButton, avatar],
@@ -90,12 +90,12 @@ class _UserPageState extends State<UserPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '@用户名',
+                      '@username',
                       style: StandardTextStyle.big,
                     ),
                     Container(height: 8),
                     Text(
-                      '朴实无华，且枯燥',
+                      'Unpretentious and boring',
                       style: StandardTextStyle.smallWithOpacity.apply(
                         color: Colors.white,
                       ),
@@ -103,10 +103,10 @@ class _UserPageState extends State<UserPage> {
                     Container(height: 10),
                     Row(
                       children: <Widget>[
-                        _UserTag(tag: '幽默'),
-                        _UserTag(tag: '机智'),
-                        _UserTag(tag: '枯燥'),
-                        _UserTag(tag: '狮子座'),
+                        _UserTag(tag: 'humor'),
+                        _UserTag(tag: 'wit'),
+                        _UserTag(tag: 'boring'),
+                        _UserTag(tag: 'Leo'),
                       ],
                     ),
                     Container(height: 10),
@@ -123,9 +123,9 @@ class _UserPageState extends State<UserPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    TextGroup('356', '关注'),
-                    TextGroup('145万', '粉丝'),
-                    TextGroup('1423万', '获赞'),
+                    TextGroup('356', 'Follow'),
+                    TextGroup('1.45 million', 'fans'),
+                    TextGroup('14.23 million', 'liked'),
                   ],
                 ),
               ),
@@ -252,7 +252,7 @@ class _UserTag extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
-        tag ?? '标签',
+        tag ?? 'tag',
         style: StandardTextStyle.smallWithOpacity,
       ),
     );
@@ -277,9 +277,9 @@ class _UserVideoTable extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              _PointSelectTextButton(true, '作品'),
-              _PointSelectTextButton(false, '关注'),
-              _PointSelectTextButton(false, '喜欢'),
+              _PointSelectTextButton(true, 'works'),
+              _PointSelectTextButton(false, 'Follow'),
+              _PointSelectTextButton(false, 'like'),
             ],
           ),
         ),
@@ -377,7 +377,7 @@ class _SmallVideo extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            '作品',
+            'work',
             style: TextStyle(
               color: Colors.white.withOpacity(0.1),
               fontSize: 18,
@@ -433,35 +433,35 @@ class _PointSelectTextButton extends StatelessWidget {
 }
 
 // class _IconTextButton extends StatelessWidget {
-//   final IconData icon;
-//   final String title;
-//   final Function onTap;
-//   const _IconTextButton(
-//     this.icon,
-//     this.title, {
-//     Key key,
-//     this.onTap,
-//   }) : super(key: key);
+// final IconData icon;
+// final String title;
+// final Function onTap;
+// const _IconTextButton(
+// this.icon,
+// this.title, {
+// Key key,
+// this.onTap,
+// }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.symmetric(vertical: 12),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[
-//           Icon(icon, color: ColorPlate.yellow),
-//           Container(
-//             padding: EdgeInsets.only(left: 2),
-//             child: Text(
-//               title,
-//               style: TextStyle(color: ColorPlate.yellow),
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
+// @override
+// Widget build(BuildContext context) {
+// return Container(
+// padding: EdgeInsets.symmetric(vertical: 12),
+// child: Row(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: <Widget>[
+// Icon(icon, color: ColorPlate.yellow),
+// Container(
+// padding: EdgeInsets. only(left: 2),
+// child: Text(
+// title,
+// style: TextStyle(color: ColorPlate.yellow),
+// ),
+// )
+// ],
+// ),
+// );
+// }
 // }
 
 class TextGroup extends StatelessWidget {

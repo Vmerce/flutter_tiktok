@@ -118,7 +118,7 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
-    // 先定义正常结构
+    // first define the normal structure
     Widget body = Stack(
       children: <Widget>[
         _LeftPageTransform(
@@ -145,7 +145,7 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
         ),
       ],
     );
-    // 增加手势控制
+    // add gesture control
     body = GestureDetector(
       onVerticalDragUpdate: calculateOffsetY,
       onVerticalDragEnd: (_) async {
@@ -161,7 +161,7 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
         details,
         screenWidth,
       ),
-      // 水平方向滑动开始
+      // start sliding horizontally
       onHorizontalDragStart: (_) {
         if (!widget.enableGesture!) return;
         animationControllerX?.stop();
@@ -191,10 +191,10 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
     return body;
   }
 
-  // 水平方向滑动中
+  // scrolling horizontally
   void onHorizontalDragUpdate(details, screenWidth) {
     if (!widget.enableGesture!) return;
-    // 控制 offsetX 的值在 -screenWidth 到 screenWidth 之间
+    // Control the value of offsetX between -screenWidth and screenWidth
     if (offsetX + details.delta.dx >= screenWidth) {
       setState(() {
         offsetX = screenWidth;
@@ -210,38 +210,38 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
     }
   }
 
-  // 水平方向滑动结束
+  // end of horizontal sliding
   onHorizontalDragEnd(details, screenWidth) {
     if (!widget.enableGesture!) return;
     print('velocity:${details.velocity}');
     var vOffset = details.velocity.pixelsPerSecond.dx;
 
-    // 速度很快时
+    // when the speed is fast
     if (vOffset > scrollSpeed && inMiddle == 0) {
-      // 去右边页面
+      // go to the right page
       return animateToPage(TikTokPagePositon.left);
     } else if (vOffset < -scrollSpeed && inMiddle == 0) {
-      // 去左边页面
+      // go to the left page
       return animateToPage(TikTokPagePositon.right);
     } else if (inMiddle > 0 && vOffset < -scrollSpeed) {
       return animateToPage(TikTokPagePositon.middle);
     } else if (inMiddle < 0 && vOffset > scrollSpeed) {
       return animateToPage(TikTokPagePositon.middle);
     }
-    // 当滑动停止的时候 根据 offsetX 的偏移量进行动画
+    // When the sliding stops, animate according to the offset of offsetX
     if (offsetX.abs() < screenWidth * 0.5) {
-      // 中间页面
+      // middle page
       return animateToPage(TikTokPagePositon.middle);
     } else if (offsetX > 0) {
-      // 去左边页面
+      // go to the left page
       return animateToPage(TikTokPagePositon.left);
     } else {
-      // 去右边页面
+      // go to the right page
       return animateToPage(TikTokPagePositon.right);
     }
   }
 
-  /// 滑动到顶部
+  /// Swipe to the top
   ///
   /// [offsetY] to 0.0
   Future animateToTop() {
@@ -282,10 +282,10 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
   bool absorbing = false;
   double endOffset = 0.0;
 
-  /// 计算[offsetY]
+  /// Calculate [offsetY]
   ///
-  /// 手指上滑,[absorbing]为false，不阻止事件，事件交给底层PageView处理
-  /// 处于第一页且是下拉，则拦截滑动���件
+  /// The finger slides up, [absorbing] is false, the event is not blocked, and the event is handed over to the underlying PageView for processing
+  /// If it is on the first page and it is a drop-down, then intercept the sliding element
   void calculateOffsetY(DragUpdateDetails details) {
     if (!widget.enableGesture!) return;
     if (inMiddle != 0) {
@@ -294,7 +294,7 @@ class _TikTokScaffoldState extends State<TikTokScaffold>
     }
     final tempY = offsetY + details.delta.dy / 2;
     if (widget.currentIndex == 0) {
-      // absorbing = true; // TODO:暂时屏蔽了下拉刷新
+      // absorbing = true; // TODO: temporarily blocked pull-down refresh
       if (tempY > 0) {
         if (tempY < 40) {
           offsetY = tempY;
@@ -361,7 +361,7 @@ class _MiddlePage extends StatelessWidget {
       ),
       child: page,
     );
-    // 刷新标志
+    // refresh flag
     Widget _headerContain;
     if (offsetY! >= 20) {
       _headerContain = Opacity(
@@ -372,7 +372,7 @@ class _MiddlePage extends StatelessWidget {
             height: 44,
             child: Center(
               child: const Text(
-                "下拉刷新内容",
+                "Pull down to refresh content",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: SysSize.normal,
@@ -426,7 +426,7 @@ class _MiddlePage extends StatelessWidget {
         } as bool Function(OverscrollIndicatorNotification)?,
         child: NotificationListener<UserScrollNotification>(
           onNotification: (notification) {
-            // 当手指离开时，并且处于顶部则拦截PageView的滑动事件 TODO: 没有触发下拉刷新
+            // When the finger leaves and is at the top, the slide event of PageView is intercepted TODO: No pull-down refresh is triggered
             if (notification.direction == ScrollDirection.idle &&
                 notification.metrics.pixels == 0.0) {
               onTopDrag?.call();
@@ -441,10 +441,10 @@ class _MiddlePage extends StatelessWidget {
   }
 }
 
-/// 左侧Widget
+/// Left Widget
 ///
-/// 通过 [Transform.scale] 进行根据 [offsetX] 缩放
-/// 最小 0.88 最大为 1
+/// Scaling according to [offsetX] via [Transform.scale]
+/// min 0.88 max 1
 class _LeftPageTransform extends StatelessWidget {
   final double? offsetX;
   final Widget? content;

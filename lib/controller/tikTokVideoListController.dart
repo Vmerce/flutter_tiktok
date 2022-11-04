@@ -10,72 +10,72 @@ typedef LoadMoreVideo = Future<List<VPVideoController>> Function(
   List<VPVideoController> list,
 );
 
-/// TikTokVideoListController是一系列视频的控制器，内部管理了视频控制器数组
-/// 提供了预加载/释放/加载更多功能
+/// TikTokVideoListController is a controller for a series of videos, which internally manages an array of video controllers
+/// Provides more functions for preloading/release/loading
 class TikTokVideoListController extends ChangeNotifier {
   TikTokVideoListController({
     this.loadMoreCount = 1,
     this.preloadCount = 2,
 
-    /// TODO: VideoPlayer有bug(安卓)，当前只能设置为0
-    /// 设置为0后，任何不在画面内的视频都会被释放
-    /// 若不设置为0，安卓将会无法加载第三个开始的视频
+    /// TODO: VideoPlayer has a bug (Android), currently it can only be set to 0
+    /// After setting to 0, any video that is not in the frame will be released
+    /// If not set to 0, Android will not be able to load the third video that starts
     this.disposeCount = 0,
   });
 
-  /// 到第几个触发预加载，例如：1:最后一个，2:倒数第二个
+  /// To the first number to trigger preloading, for example: 1: the last one, 2: the second to last
   final int loadMoreCount;
 
-  /// 预加载多少个视频
+  /// How many videos to preload
   final int preloadCount;
 
-  /// 超出多少个，就释放视频
+  /// How many more, release the video
   final int disposeCount;
 
-  /// 提供视频的builder
+  /// builder that provides video
   LoadMoreVideo? _videoProvider;
 
   loadIndex(int target, {bool reload = false}) {
     if (!reload) {
       if (index.value == target) return;
     }
-    // 播放当前的，暂停其他的
+    // play the current one, pause the others
     var oldIndex = index.value;
     var newIndex = target;
 
-    // 暂停之前的视频
+    // Pause previous video
     if (!(oldIndex == 0 && newIndex == 0)) {
       playerOfIndex(oldIndex)?.controller.seekTo(Duration.zero);
       // playerOfIndex(oldIndex)?.controller.addListener(_didUpdateValue);
       // playerOfIndex(oldIndex)?.showPauseIcon.addListener(_didUpdateValue);
       playerOfIndex(oldIndex)?.pause();
-      print('暂停$oldIndex');
+      print('Pause $oldIndex');
     }
-    // 开始播放当前的视频
+    // Start playing the current video
     playerOfIndex(newIndex)?.controller.addListener(_didUpdateValue);
     playerOfIndex(newIndex)?.showPauseIcon.addListener(_didUpdateValue);
     playerOfIndex(newIndex)?.play();
-    print('播放$newIndex');
-    // 处理预加载/释放内存
+    print('Play $newIndex');
+    // Handle preloading/freeing memory
     for (var i = 0; i < playerList.length; i++) {
-      /// 需要释放[disposeCount]之前的视频
-      /// i < newIndex - disposeCount 向下滑动时释放视频
-      /// i > newIndex + disposeCount 向上滑动，同时避免disposeCount设置为0时失去视频预加载功能
+      /// Need to release the video before [disposeCount]
+      /// i < newIndex - disposeCount to release the video when swiping down
+      /// i > newIndex + disposeCount Swipe up, while avoiding losing video preload function when disposeCount is set to 0
       if (i < newIndex - disposeCount || i > newIndex + max(disposeCount, 2)) {
-        print('释放$i');
+        print('Freed $i');
         playerOfIndex(i)?.controller.removeListener(_didUpdateValue);
         playerOfIndex(i)?.showPauseIcon.removeListener(_didUpdateValue);
         playerOfIndex(i)?.dispose();
         continue;
       }
-      // 需要预加载
+      // preload required
       if (i > newIndex && i < newIndex + preloadCount) {
-        print('预加载$i');
+        print('Preloading $i');
         playerOfIndex(i)?.init();
         continue;
       }
     }
-    // 快到最底部，添加更多视频
+    // Go to the bottom to add more videos
     if (playerList.length - newIndex <= loadMoreCount + 1) {
       _videoProvider?.call(newIndex, playerList).then(
         (list) async {
@@ -85,7 +85,7 @@ class TikTokVideoListController extends ChangeNotifier {
       );
     }
 
-    // 完成
+    // Finish
     index.value = target;
   }
 
@@ -93,7 +93,7 @@ class TikTokVideoListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 获取指定index的player
+  /// Get the player of the specified index
   VPVideoController? playerOfIndex(int index) {
     if (index < 0 || index > playerList.length - 1) {
       return null;
@@ -101,10 +101,10 @@ class TikTokVideoListController extends ChangeNotifier {
     return playerList[index];
   }
 
-  /// 视频总数目
+  /// Total number of videos
   int get videoCount => playerList.length;
 
-  /// 初始化
+  /// initialization
   init({
     required PageController pageController,
     required List<VPVideoController> initialList,
@@ -122,18 +122,18 @@ class TikTokVideoListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 目前的视频序号
+  /// Current video sequence number
   ValueNotifier<int> index = ValueNotifier<int>(0);
 
-  /// 视频列表
+  /// video list
   List<VPVideoController> playerList = [];
 
   ///
   VPVideoController get currentPlayer => playerList[index.value];
 
-  /// 销毁全部
+  /// destroy all
   void dispose() {
-    // 销毁全部
+    // destroy all
     for (var player in playerList) {
       player.showPauseIcon.dispose();
       player.dispose();
@@ -146,28 +146,28 @@ class TikTokVideoListController extends ChangeNotifier {
 typedef ControllerSetter<T> = Future<void> Function(T controller);
 typedef ControllerBuilder<T> = T Function();
 
-/// 抽象类，作为视频控制器必须实现这些方法
+/// Abstract class, as a video controller must implement these methods
 abstract class TikTokVideoController<T> {
-  /// 获取当前的控制器实例
+  /// Get the current controller instance
   T? get controller;
 
-  /// 是否显示暂停按钮
+  /// Whether to show the pause button
   ValueNotifier<bool> get showPauseIcon;
 
-  /// 加载视频，在init后，应当开始下载视频内容
+  /// Load the video, after init, it should start downloading the video content
   Future<void> init({ControllerSetter<T>? afterInit});
 
-  /// 视频销毁，在dispose后，应当释放任何内存资源
+  /// Video is destroyed, after dispose, any memory resources should be released
   Future<void> dispose();
 
-  /// 播放
+  /// Play
   Future<void> play();
 
-  /// 暂停
+  /// Pause
   Future<void> pause({bool showPauseIcon: false});
 }
 
-/// 异步方法并发锁
+/// Asynchronous method concurrent lock
 Completer<void>? _syncLock;
 
 class VPVideoController extends TikTokVideoController<VideoPlayerController> {
@@ -199,17 +199,17 @@ class VPVideoController extends TikTokVideoController<VideoPlayerController> {
 
   Completer<void>? _disposeLock;
 
-  /// 防止异步方法并发
+  /// Prevent concurrency of async methods
   Future<void> _syncCall(Future Function()? fn) async {
-    // 设置同步等待
+    // set sync wait
     var lastCompleter = _syncLock;
     var completer = Completer<void>();
     _syncLock = completer;
-    // 等待其他同步任务完成
+    // Wait for other sync tasks to complete
     await lastCompleter?.future;
-    // 主任务
+    // main task
     await fn?.call();
-    // 结束
+    // Finish
     completer.complete();
   }
 

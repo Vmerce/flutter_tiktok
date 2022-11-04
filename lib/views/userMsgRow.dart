@@ -19,12 +19,12 @@ class UserMsgRow extends StatelessWidget {
   Widget build(BuildContext context) {
     var list = <Widget>[
       Text(
-        title ?? '用户',
+        title ?? 'User',
         style: StandardTextStyle.normalW,
       ),
       Container(height: 2),
       Text(
-        desc ?? '和你打了下招呼',
+        desc ?? 'Say hello to you',
         style: StandardTextStyle.smallWithOpacity,
       ),
     ];
@@ -49,7 +49,8 @@ class UserMsgRow extends StatelessWidget {
         child: lead ??
             ClipOval(
               child: Image.network(
-                "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",fit: BoxFit.cover,
+                "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+                fit: BoxFit.cover,
               ),
             ),
       ),

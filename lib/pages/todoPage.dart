@@ -30,13 +30,13 @@ class TodoPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  title ?? '未开放的页面',
+                  title ?? 'unopened page',
                   style: StandardTextStyle.big,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 12),
                   child: Text(
-                    detail ?? '正在施工中',
+                    detail ?? 'under construction',
                     style: StandardTextStyle.smallWithOpacity,
                   ),
                 ),

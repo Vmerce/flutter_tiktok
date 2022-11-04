@@ -3,8 +3,6 @@ import 'package:flutter_tiktok/views/tilTokAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:tapped/tapped.dart';
 
-
-
 class UserDetailPage extends StatefulWidget {
   @override
   _UserDetailPageState createState() => _UserDetailPageState();
@@ -14,7 +12,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
   @override
   Widget build(BuildContext context) {
     Widget head = TikTokAppbar(
-      title: '用户',
+      title: 'User',
     );
     var userHead = Row(
       children: <Widget>[
@@ -22,7 +20,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Text(
-              '个人信息',
+              'Personal information',
               style: StandardTextStyle.smallWithOpacity,
             ),
           ),
@@ -30,7 +28,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
         Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Text(
-            '修改',
+            'Revise',
             style: StandardTextStyle.smallWithOpacity.apply(
               color: ColorPlate.orange,
             ),
@@ -45,51 +43,51 @@ class _UserDetailPageState extends State<UserDetailPage> {
       children: <Widget>[
         userHead,
         _UserInfoRow(
-          title: '昵称',
+          title: 'nickname',
           rightIcon: Text(
-            '朱二蛋的枯燥生活',
+            'The boring life of Zhu Erdan',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '头像',
+          title: 'avatar',
           rightIcon: Text(
-            '上传',
+            'upload',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '手机绑定',
+          title: 'Mobile phone binding',
           rightIcon: Text(
             '186****7767',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '地址',
+          title: 'Address',
           rightIcon: Text(
-            '深圳市南山区南海大道',
+            'Nanhai Avenue, Nanshan District, Shenzhen',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '年龄',
+          title: 'age',
           rightIcon: Text(
             '18',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '用户性别',
+          title: 'User gender',
           rightIcon: Text(
-            '男',
+            'male',
             style: StandardTextStyle.small,
           ),
         ),
         _UserInfoRow(
-          title: '职业',
+          title: 'Occupation',
           rightIcon: Text(
-            '总裁',
+            'President',
             style: StandardTextStyle.small,
           ),
         ),
